@@ -144,8 +144,12 @@ nlu:
     - i dont know that?
     - I do not know what you mean?
     - What do you know about [something]?
-
-      
+- intent: git_help
+  examples: |
+    - git help
+    - what are my git commands
+    - help me upload you
+    - github   
 - intent: pre_train1
   examples: |
     - pretrain 
@@ -158,11 +162,11 @@ nlu:
     - do you know how much a car weighs?
     
 - intent: action_execute_command
-  - examples: |
-  - action_execute_command
-  - open linux toolbox
-  - code 000
-  - menu 000
-  - dev menu 000
+  examples: |
+    - action_execute_command
+    - open linux toolbox
+    - code 000
+    - menu 000
+    - dev menu 000
   
 

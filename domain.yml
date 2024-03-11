@@ -22,8 +22,12 @@ intents:
   - action_read_notes
   - pre_train1
   - action_execute_command
+  - git_help
 
 responses:
+
+  git_help:
+  - text: "git status, git add, git rm, git commit -m 'why', git push origin main"
 
   utter_affirm:
   - text: "Yes, indeed!"
@@ -72,4 +76,5 @@ responses:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
 

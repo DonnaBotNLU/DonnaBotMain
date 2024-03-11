@@ -95,21 +95,27 @@ def execute_action(action_number):
         print("Installing Donna AI [in progress]...")
         # Replace this line with the command you want to execute for Action 4
     elif action_number == 5:
-        print("Backing up Donna Model...")
-        directory = "./Documents/models/"
+        # Define the source directory where your .tar.gz files are located
+        source_directory = "./models/"
+        
+        # Get a list of all files in the source directory
+        files = os.listdir(source_directory)
+
+        # Filter out only the .tar.gz files
+        tar_files = [file for file in files if file.endswith(".tar.gz")]
+
+        # Sort the files by modification time to get the most recent one
+        most_recent_file = max(tar_files, key=lambda x: os.path.getmtime(os.path.join(source_directory, x)))
+
+        # Define the destination directory (e.g., desktop)
+        destination_directory = "./desktop"
+
+        # Copy the most recent .tar.gz file to the destination directory
         try:
-            # List all files in the directory
-            files = os.listdir(directory)
-            
-            # Filter out the desired file based on your criteria
-            desired_file = next((file for file in files if file.endswith('.zip')), None)
-            
-            if desired_file:
-                # Perform the backup operation
-                print(f"Backing up {desired_file}...")
-                # Add your backup logic here
-            else:
-                print("No ZIP file found in the directory")
+            shutil.copy(os.path.join(source_directory, most_recent_file), destination_directory)
+            dispatcher.utter_message(f"Successfully copied {most_recent_file} to the desktop.")
+        except Exception as e:
+            dispatcher.utter_message(f"Error copying file: {e}")
         except Exception as e:
             print(f"Error fetching file: {e}")
     else:

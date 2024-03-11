@@ -89,6 +89,8 @@ stories:
   steps:
   - intent: goodbyes_smalltalk
   - action: utter_goodbye
+  - intent: sad path 1
+  - action: sad path 1
 
 - story: greet_smalltalk path
   steps:
@@ -100,6 +102,10 @@ stories:
   - intent: action_execute_command
   - action: action_execute_command
 
+- story: git_help
+  steps:
+  - intent: git_help
+  - action: git_help
 
 - story: sad path 1
   steps:
@@ -121,5 +127,6 @@ stories:
   - intent: deny
   - action: utter_goodbye
   
+
 
 
