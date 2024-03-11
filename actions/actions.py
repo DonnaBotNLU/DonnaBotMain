@@ -66,7 +66,8 @@ class ActionUpdateNLUData(Action):
         return []
 
     def ask_chatgpt(self, question: Text) -> Tuple[Text, Text, Text]:
-        api_key = ''
+        with open("api_key.txt", "r") as api_key_file:
+            api_key = api_key_file.read().strip()
         url = 'https://api.openai.com/v1/chat/completions'
         headers = {
             'Authorization': f'Bearer {api_key}',
