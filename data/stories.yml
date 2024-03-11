@@ -1,0 +1,125 @@
+version: "3.1"
+
+stories:
+
+- story: pre_train1
+  steps:
+  - intent: pre_train1
+  - action: pre_train1
+
+- story: action_read_notes path
+  steps: 
+  - intent: action_read_notes
+  - action: action_read_notes
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  
+- story: take_note
+  steps:
+  - intent: take_note
+  - action: action_take_note
+  
+- story: handle_unknown_question
+  steps:
+  - intent: unknown_question
+  - action: action_update_nlu_data
+
+- story: greet path
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: goodbye path
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: affirm path
+  steps:
+  - intent: affirm
+  - action: utter_affirm
+
+- story: deny path
+  steps:
+  - intent: deny
+  - action: utter_deny
+
+- story: mood_great path
+  steps:
+  - intent: mood_great
+  - action: utter_happy
+
+- story: mood_unhappy path
+  steps:
+  - intent: mood_unhappy
+  - action: utter_sad
+
+- story: utter_affirm path
+  steps:
+  - intent: utter_affirm
+  - action: utter_affirm
+
+- story: utter_deny path
+  steps:
+  - intent: utter_deny
+  - action: utter_deny
+
+- story: utter_sad path
+  steps:
+  - intent: utter_sad
+  - action: utter_sad
+
+
+- story: deny_smalltalk path
+  steps:
+  - intent: deny_smalltalk
+  - action: utter_deny
+
+- story: affirm_smalltalk path
+  steps:
+  - intent: affirm_smalltalk
+  - action: utter_affirm
+
+- story: goodbyes_smalltalk path
+  steps:
+  - intent: goodbyes_smalltalk
+  - action: utter_goodbye
+
+- story: greet_smalltalk path
+  steps:
+  - intent: greet_smalltalk
+  - action: utter_greet
+
+- story: action_execute_command
+  steps: 
+  - intent: action_execute_command
+  - action: action_execute_command
+
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+  
+
+

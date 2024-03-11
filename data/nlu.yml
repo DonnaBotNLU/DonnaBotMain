@@ -1,0 +1,168 @@
+version: "3.1"
+nlu:
+- intent: greet_smalltalk
+  examples: |
+    - hi
+    - hello
+    - howdy
+    - hey
+    - heya
+    - hihi
+    - sup
+    - what's up
+    - hey there
+    - hello buddy
+    - wazzup
+    - yo
+- intent: goodbyes_smalltalk
+  examples: |
+    - goodbye
+    - bye
+    - see you later
+    - talk to you later
+    - cya
+    - ciao
+    - shutting you down
+    - turning you off
+    - powering you off
+  
+- intent: action_read_notes
+  examples: |
+    - what was my note?
+    - what did i forget?
+    - do you remember my note?
+    - what did i have you remember? 
+    - remember [something].
+  
+- intent: deny_smalltalk
+  examples: |
+    - No, thank you
+    - I'm not interested
+
+- intent: affirm_smalltalk
+  examples: |
+    - Yes, please
+    - That sounds good
+
+- intent: goodbyes_smalltalk
+  examples: |
+    - Bye for now
+    - See you later
+
+- intent: greet_smalltalk
+  examples: |
+    - Hi there
+    - Hello friend
+
+    
+- intent: greet
+  examples: |
+    - Hello
+    - Hi
+    - Hey
+
+- intent: goodbye
+  examples: |
+    - Goodbye
+    - Bye
+
+- intent: affirm
+  examples: |
+    - Yes
+    - Indeed
+    - Absolutely
+
+- intent: deny
+  examples: |
+    - No
+    - Nope
+    - Not really
+
+- intent: mood_great
+  examples: |
+    - I'm feeling great
+    - Everything is awesome
+
+- intent: mood_unhappy
+  examples: |
+    - I'm feeling sad
+    - Things aren't going well
+
+- intent: affirm_smalltalk
+  examples: |
+    - yes
+    - yep
+    - yeah
+    - indeed
+    - that's right
+    - ok
+    - great
+    - correct
+    - perfect
+    - sounds good
+    - sounds great
+
+- intent: utter_affirm
+  examples: |
+    - Sure thing!
+    - Absolutely!
+
+- intent: utter_deny
+  examples: |
+    - Nope, not interested.
+    - No, thank you.
+    - I'm not interested.
+
+- intent: utter_sad
+  examples: |
+    - I'm sorry to hear that.
+    - That's unfortunate.
+    - It's okay to feel sad sometimes.
+
+- intent: take_note
+  examples: |
+    - take note.
+    - remember this [something].
+    - dont forget [something].
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - are you a robot?
+    - am I talking to an actual person?
+    - you're a bot aren't you?
+    - are you even a real person?
+ 
+- intent: unknown_question
+  examples: |
+    - What is the meaning of life?
+    - Can you tell me something new?
+    - this is a new question?
+    - i dont know that?
+    - I do not know what you mean?
+    - What do you know about [something]?
+
+      
+- intent: pre_train1
+  examples: |
+    - pretrain 
+    - generate the domain file.
+    - fix your code for me
+    - update 
+ 
+- intent: unknown_question
+  examples: |
+    - do you know how much a car weighs?
+    
+- intent: action_execute_command
+  - examples: |
+  - action_execute_command
+  - open linux toolbox
+  - code 000
+  - menu 000
+  - dev menu 000
+  
+
