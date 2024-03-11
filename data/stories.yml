@@ -12,6 +12,23 @@ stories:
   - intent: action_read_notes
   - action: action_read_notes
 
+- story: action_copy
+  steps:
+  - intent: action_copy
+  - action: action_copy
+  
+- story: action_paste
+  steps: 
+  - intent: action_paste
+  - action: action_paste
+  
+- story: User provides channel ID and sends message
+  steps:
+    - intent: provide_channel_id
+    - action: action_set_channel_id
+    - intent: user_message
+    - action: action_send_to_discord
+
 - story: happy path
   steps:
   - intent: greet

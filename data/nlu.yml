@@ -1,5 +1,13 @@
 version: "3.1"
 nlu:
+- intent: action_send_to_discord
+  examples: |
+    - send to discord
+    - discord app
+- intent: action_set_channel_id
+  examples: |
+    - set the channel id
+    - channel id for discord
 - intent: greet_smalltalk
   examples: |
     - hi
@@ -82,11 +90,26 @@ nlu:
   examples: |
     - I'm feeling great
     - Everything is awesome
+- intent: action_copy
+  examples: |
+    - copy [something]
+    - copy
+    - move from one place to another
+    - put [something] in clipboard
+    - make a duplicate
+  
+- intent: action_paste
+  examples: |
+    - paste [something]
+    - paste
+    - what was in clipboard?
+  
 
 - intent: mood_unhappy
   examples: |
     - I'm feeling sad
     - Things aren't going well
+    - goodbye forever
 
 - intent: affirm_smalltalk
   examples: |
@@ -144,6 +167,10 @@ nlu:
     - i dont know that?
     - I do not know what you mean?
     - What do you know about [something]?
+    
+- intent: ActionUpdateNLUData
+  examples: |
+    - 0
 - intent: git_help
   examples: |
     - git help
