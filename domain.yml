@@ -16,11 +16,11 @@ intents:
   - utter_affirm
   - utter_deny
   - utter_sad
-  - action_update_nlu_data
   - action_take_note
   - take_note
   - action_read_notes
   - pre_train1
+  - ActionUpdateNLUData
   - action_execute_command
   - git_help
 
@@ -59,6 +59,8 @@ responses:
 
   utter_goodbye:
   - text: "Bye"
+  unknown_question:
+  - text: ""
   pre_train1:
   - text: "pre-formating..."
   - text: "done!"
@@ -66,7 +68,7 @@ responses:
   - text: "I am a bot, powered by Rasa."
   action_read_notes:
   - text: "here are your notes"
-  action_update_nlu_data:
+  ActionUpdateNLUData:
   - text: "Learning something new everyday!"
   action_take_note:
   - text: "ill be sure to remember that."

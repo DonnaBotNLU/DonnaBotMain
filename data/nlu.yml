@@ -147,9 +147,11 @@ nlu:
 - intent: git_help
   examples: |
     - git help
+    - git_help
     - what are my git commands
     - help me upload you
-    - github   
+    - github
+    - How do i use git?   
 - intent: pre_train1
   examples: |
     - pretrain 

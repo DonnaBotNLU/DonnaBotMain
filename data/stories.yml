@@ -24,10 +24,10 @@ stories:
   - intent: take_note
   - action: action_take_note
   
-- story: handle_unknown_question
+- story: unknown_question
   steps:
   - intent: unknown_question
-  - action: action_update_nlu_data
+  - action: ActionUpdateNLUData
 
 - story: greet path
   steps:
@@ -89,8 +89,6 @@ stories:
   steps:
   - intent: goodbyes_smalltalk
   - action: utter_goodbye
-  - intent: sad path 1
-  - action: sad path 1
 
 - story: greet_smalltalk path
   steps:

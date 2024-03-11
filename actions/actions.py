@@ -12,19 +12,64 @@
 # from rasa_sdk import Action, Tracker
 # from rasa_sdk.executor import CollectingDispatcher
 #
+import os
 import requests
-from typing import Text, Dict, Any, Tuple
+from typing import List, Dict, Any, Text
 from rasa_sdk import Action, Tracker
+from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.executor import CollectingDispatcher
 
-
 class ActionUpdateNLUData(Action):
-    def name(self) -> Text:
-        return "action_update_nlu_data"
+    def name(self):
+        return "ActionUpdateNLUData"
 
-    def run(self, dispatcher, tracker, domain):
-        print("not implemented yet")
+    def run(self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Extract the user's message
+        user_message = tracker.latest_message.get("text")
+
+        # Read API key from the file
+        api_key_file = "api_key.txt"
+        with open(api_key_file, "r") as f:
+            api_key = f.read().strip()
+
+        # Query ChatGPT for a response
+        chatgpt_response = self.ask_chatgpt(user_message, api_key)
+
+        if chatgpt_response:
+            # Send the response from ChatGPT to the user
+            dispatcher.utter_message(text=chatgpt_response)
+        else:
+            # If ChatGPT couldn't generate a response, revert the last user utterance
+            print("return_user_utterance")
+            return [UserUtteranceReverted()]
+
         return []
+
+    def ask_chatgpt(self, question: Text, api_key: str) -> Text:
+        # Define your ChatGPT API parameters
+        url = 'https://api.openai.com/v1/chat/completions'
+        headers = {
+            'Authorization': f'Bearer {api_key}',
+            'Content-Type': 'application/json'
+        }
+        payload = {
+            'model': 'text-davinci-003',
+            'messages': [
+                {'role': 'system', 'content': 'You are a bot.', 'position': 'end'},
+                {'role': 'user', 'content': question, 'position': 'start'}
+            ]
+        }
+
+        # Send a request to the ChatGPT API
+        response = requests.post(url, headers=headers, json=payload)
+
+        # Extract the response text from the API response
+        response_data = response.json()
+        if 'choices' in response_data:
+            return response_data['choices'][0]['message']['content']
+        else:
+            print("failed")
+            return None
 
 
 from rasa_sdk import Action
@@ -36,21 +81,8 @@ class PreTrain1Action(Action):
         return "pre_train1"
 
     def run(self, dispatcher, tracker, domain):
-        from rasa_denerator import RasaDenerator
 
-        nlu_file = "data/nlu.md"
-        actions_dir = "actions/"
-        tag_dict = {"templates": "domain", "slots": "domain",
-                    "entities": "domain"}
-        output_file = "domain.yml"
-
-        denerator = RasaDenerator(nlu_file=nlu_file,
-                                  actions_dir=actions_dir,
-                                  tag_dict=tag_dict,
-                                  output=output_file)
-        denerator.generate_domain()
-
-        return [SlotSet("domain_generated", True)]
+        return []
 
         
 from typing import Any, Text, Dict, List
