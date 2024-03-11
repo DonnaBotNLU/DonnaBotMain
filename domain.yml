@@ -68,6 +68,7 @@ responses:
   - text: "ill be sure to remember that."
   action_execute_command:
   - text: "running your Linux Toolbox"
+  - text: "Starting Module..."
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
