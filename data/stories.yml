@@ -1,23 +1,28 @@
 version: "3.1"
 
 stories:
+- story: add a table to the training file
+  steps: 
+  - intent: add_table
+  - action: add_table
+
 
 - story: pre_train1
   steps:
   - intent: pre_train1
   - action: pre_train1
 
-- story: action_read_notes path
+- story: read the user their notes
   steps: 
   - intent: action_read_notes
   - action: action_read_notes
 
-- story: action_copy
+- story: copy [something] from the user
   steps:
   - intent: action_copy
   - action: action_copy
   
-- story: action_paste
+- story: paste [something] from the user
   steps: 
   - intent: action_paste
   - action: action_paste
@@ -36,7 +41,7 @@ stories:
   - intent: mood_great
   - action: utter_happy
   
-- story: take_note
+- story: write a note for the user
   steps:
   - intent: take_note
   - action: action_take_note
@@ -121,6 +126,8 @@ stories:
   steps:
   - intent: git_help
   - action: git_help
+
+
 
 - story: sad path 1
   steps:

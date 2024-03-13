@@ -1,5 +1,18 @@
 version: "3.1"
 nlu:
+
+- lookup: country
+  examples: |
+    - Afghanistan
+    - Albania
+    - United States of America
+    - Zambia
+    - Zimbabwe
+- intent: add_table
+  examples: |
+    - make a table named [United States Of America]{"entity": "name", "role": "name"} containing [value]{"entity": "value"}
+
+
 - intent: action_send_to_discord
   examples: |
     - send to discord
