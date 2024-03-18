@@ -1,0 +1,27 @@
+import requests
+
+def get_disposable_email():
+    url = "https://api4.temp-mail.org/request/domains/"
+    response = requests.get(url)
+    if response.status_code == 200:
+        domains = response.json()
+        if domains and isinstance(domains, list):
+            domain = domains[0]
+            email = f"{generate_random_string()}@{domain}"
+            return email
+    return None
+
+def generate_random_string(length=10):
+    import random
+    import string
+    return ''.join(random.choice(string.ascii_letters) for _ in range(length))
+
+def main():
+    disposable_email = get_disposable_email()
+    if disposable_email:
+        print(f"Your disposable email address is: {disposable_email}")
+    else:
+        print("Failed to retrieve a disposable email address.")
+
+if __name__ == "__main__":
+    main()

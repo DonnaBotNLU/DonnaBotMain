@@ -184,6 +184,13 @@ nlu:
 - intent: ActionUpdateNLUData
   examples: |
     - 0
+
+- intent: get_disposable_email
+  examples: |
+    - i need an email
+    - disposable email please
+    - temporary email please
+    - tempmail
 - intent: git_help
   examples: |
     - git help

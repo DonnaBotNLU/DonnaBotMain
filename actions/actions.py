@@ -12,6 +12,28 @@
 # from rasa_sdk import Action, Tracker
 # from rasa_sdk.executor import CollectingDispatcher
 #
+from typing import Any, Text, Dict, List
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+import subprocess
+
+class ActionGetDisposableEmail(Action):
+    def name(self) -> Text:
+        return "action_get_disposable_email"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Execute the script to get a disposable email
+        result = subprocess.run(['python', 'get_disposable_email.py'], capture_output=True, text=True)
+        if result.returncode == 0:
+            disposable_email = result.stdout.strip()
+            dispatcher.utter_message(text=f"Your disposable email address is: {disposable_email}")
+        else:
+            dispatcher.utter_message(text="Failed to retrieve a disposable email address.")
+        return []
+
+
 import discord
 from discord.ext import commands
 from typing import Any, Text, Dict, List

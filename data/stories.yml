@@ -148,6 +148,12 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: get_disposable_email
+  steps: 
+  - intent: get_disposable_email
+  - action: utter_tempmail
+  - action: action_get_disposable_email
   
 
 

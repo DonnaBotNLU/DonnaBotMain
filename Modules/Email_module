@@ -1,0 +1,35 @@
+import imaplib
+import email
+
+def get_email_credentials():
+    email_address = input("Enter your email address: ")
+    password = input("Enter your email password: ")
+    return email_address, password
+
+def connect_to_mailbox(email_address, password):
+    IMAP_SERVER = 'imap.example.com'  # Update with your IMAP server
+    IMAP_PORT = 993
+
+    mail = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT)
+    mail.login(email_address, password)
+    return mail
+
+def filter_and_delete_emails(mail, keywords):
+    mail.select('inbox')
+    for keyword in keywords:
+        result, data = mail.search(None, f'(UNSEEN) (BODY " {keyword} ")')
+        for num in data[0].split():
+            mail.store(num, '+FLAGS', '\\Deleted')
+    mail.expunge()
+
+def main():
+    email_address, password = get_email_credentials()
+    mail = connect_to_mailbox(email_address, password)
+    keywords_to_filter = ["keyword1", "keyword2", "keyword3"]  # Add your keywords here
+    filter_and_delete_emails(mail, keywords_to_filter)
+    print("Emails filtered and deleted successfully.")
+    mail.close()
+    mail.logout()
+
+if __name__ == "__main__":
+    main()

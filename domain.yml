@@ -47,6 +47,7 @@ intents:
   - action_set_channel_id
   - provide_channel_id
   - user_message
+  - get_disposable_email
   
 actions:
   - action_take_note
@@ -58,10 +59,12 @@ actions:
   - git_help
   - action_copy
   - action_paste
+  - add_table
   - action_send_to_discord
   - action_set_channel_id
   - provide_channel_id
   - user_message
+  - action_get_disposable_email
 
 responses:
 
@@ -94,7 +97,9 @@ responses:
 
   utter_did_that_help:
   - text: "Did that help you?"
-
+  utter_tempmail:
+  - text: "ok there are many options for a disposable email, i can set one up for you!"
+  - text: "ok ill set you up a temporary email!"
   utter_happy:
   - text: "Great, carry on!"
 
