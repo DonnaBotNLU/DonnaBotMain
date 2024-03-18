@@ -1,8 +1,8 @@
-add discord integration
+add discord integration====finished
 
 finish email sorting rules and story
 
-get uknown answers from a different language model such as gpt or grok
+get unknown answers from a different language model such as gpt or grok
 
 web browsing functionality
 

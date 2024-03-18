@@ -38,17 +38,17 @@ import discord
 from discord.ext import commands
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
-from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import UserUtteranceReverted, SlotSet
 
 class ActionSendToDiscord(Action):
     def name(self) -> Text:
         return "action_send_to_discord"
 
     async def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # Check if the channel ID slot is set
+
+        # Extract the channel ID from the slot
         channel_id = tracker.get_slot("channel_id")
-        dispatcher.utter_message("getting ID")
         if not channel_id:
             # If channel ID is not set, prompt the user to provide it
             dispatcher.utter_message("Please provide the Discord channel ID where you want to send the message.")
@@ -57,7 +57,7 @@ class ActionSendToDiscord(Action):
         # Extract the user's message
         user_message = tracker.latest_message.get("text")
 
-        # Read API key from the file
+        # Read Discord API key from the file
         api_key_file = "discord_api.txt"
         with open(api_key_file, "r") as f:
             api_key = f.read().strip()
@@ -74,8 +74,8 @@ class ActionSendToDiscord(Action):
         # Run the Discord bot to send the message
         bot.loop.create_task(send_message_to_discord())
 
-        return []
-
+        # Call Rasa to process the user's message
+        return [UserUtteranceReverted()]
 
 class ActionSetChannelID(Action):
     def name(self) -> Text:
@@ -87,6 +87,35 @@ class ActionSetChannelID(Action):
 
         # Save the channel ID as a slot
         return [SlotSet("channel_id", channel_id)]
+
+def start_discord_bot(channel_id):
+    # Read Discord API key from the file
+    api_key_file = "discord_api.txt"
+    with open(api_key_file, "r") as f:
+        api_key = f.read().strip()
+
+    # Initialize the Discord bot
+    bot = commands.Bot(command_prefix='!')
+
+    @bot.event
+    async def on_ready():
+        print('Bot is ready.')
+
+    @bot.event
+    async def on_message(message):
+        if message.author == bot.user:
+            return
+
+        # Call Rasa to process the received message
+        # Extract user's message from the Discord message object
+        user_message = message.content
+        # Use Rasa to process the message and get a response
+        rasa_response = ...  # Call Rasa with user_message
+        # Send the Rasa response back to Discord
+        await message.channel.send(rasa_response)
+
+    # Start the Discord bot
+    bot.run(api_key)
 
 
 class ActionUpdateNLUData(Action):

@@ -17,10 +17,12 @@ def print_rainbow(message):
         sys.stdout.flush()
         time.sleep(0.2)  # Adjust speed as needed
 
-def start_rasa_actions():
+def start_rasa_actions():  #Will need to be changed for the windows and mac versions, this is linux feature only
     directory = os.path.expanduser("~/Rasa")
+    command = f'cd {directory} && rasa run actions'
 
-    subprocess.Popen(['rasa', 'run', 'actions'], cwd=directory)
+    # Open a new terminal window and execute the command
+    os.system(f'gnome-terminal -- bash -c "{command}; exec bash"')
 
 def start_rasa_shell():
     # Define the directory you want to run the command in

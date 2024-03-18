@@ -31,3 +31,4 @@ To get started with DonnaBotMain, follow these simple steps:
 While this README provides a brief overview of DonnaBotMain, there's much more to discover and explore within the bot. Feel free to document your experiences and functionalities as you continue to use DonnaBotMain, making it even more robust and tailored to your needs.
 
 P.S. new to using git/github, constructive criticism is very appreciated, help is valued
+TODO: https://github.com/DonnaBotNLU/DonnaBotMain/blob/main/todo.txt
