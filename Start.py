@@ -1,5 +1,7 @@
 import subprocess
 import time
+import shutil 
+import sys
 
 def print_rainbow(message):
     colors = [
