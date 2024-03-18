@@ -3,8 +3,12 @@
     <img alt="Static Badge" src="https://img.shields.io/badge/build-passing-brightgreen">
     <img alt="Static Badge" src="https://img.shields.io/badge/version-0.2.0alpha-purple">
     <a href="https://github.com/DonnaBotNLU/DonnaBotMain/actions/workflows/python-package.yml">
-        <img alt="Python package" src="https://github.com/DonnaBotNLU/DonnaBotMain/actions/workflows/python-package.yml/badge.svg">
+    <img alt="Python package" src="https://github.com/DonnaBotNLU/DonnaBotMain/actions/workflows/python-package.yml/badge.svg">
     </a>
+    <a href="https://mybinder.org/v2/gh/DonnaBotNLU/DonnaBotMain/HEAD">
+    <img src="https://mybinder.org/badge_logo.svg" alt="Binder">
+</a>
+
 </div>
 
 
