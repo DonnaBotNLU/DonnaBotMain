@@ -123,6 +123,7 @@ def execute_action(action_number):
     else:
         print("Invalid action number")
 
+
 def main():
     while True:
         display_menu()
@@ -134,6 +135,7 @@ def main():
                 print("Please enter a number between 1 and 5")
         except ValueError:
             print("Invalid input. Please enter a number.")
+
 
 if __name__ == "__main__":
     main()
