@@ -1,5 +1,7 @@
 # DonnaBotMain
 <img alt="Static Badge" src="https://img.shields.io/badge/build-passing-brightgreen">
+<img alt="Static Badge" src="https://img.shields.io/badge/version-0.2.0alpha-purple">
+[![Python package](https://github.com/DonnaBotNLU/DonnaBotMain/actions/workflows/python-package.yml/badge.svg)](https://github.com/DonnaBotNLU/DonnaBotMain/actions/workflows/python-package.yml)
 
 DonnaBotMain is a versatile personal assistant bot designed to streamline various tasks efficiently. From executing custom commands to creating temporary emails, texting, emailing, filtering content, utilizing Discord, and more, DonnaBotMain offers a wide array of functionalities to enhance productivity.
 
