@@ -1,0 +1,12 @@
+add discord integration
+
+finish email sorting rules and story
+
+get uknown answers from a different language model such as gpt or grok
+
+web browsing functionality
+
+generate images locally or in the cloud
+
+finish linuxtoolbox.py -adding aditional logic
+
