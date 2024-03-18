@@ -1,6 +1,6 @@
 import subprocess
 import time
-import shutil 
+import os
 import sys
 
 def print_rainbow(message):
@@ -18,10 +18,16 @@ def print_rainbow(message):
         time.sleep(0.2)  # Adjust speed as needed
 
 def start_rasa_actions():
-    subprocess.Popen(['rasa', 'run', 'actions'])
+    directory = os.path.expanduser("~/Rasa")
+
+    subprocess.Popen(['rasa', 'run', 'actions'], cwd=directory)
 
 def start_rasa_shell():
-    subprocess.Popen(['rasa', 'shell'])
+    # Define the directory you want to run the command in
+    directory = os.path.expanduser("~/Rasa")
+
+    # Start the Rasa shell inside the specified directory
+    subprocess.Popen(['rasa', 'shell'], cwd=directory)
 
 if __name__ == "__main__":
     print("What do you want to do?")
