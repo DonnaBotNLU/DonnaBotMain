@@ -11,5 +11,6 @@ def test_display_menu(capsys):
                            "4. Install Donna AI [in progress]\n" \
                            "5. Backup Donna AI\n"
 
+
 if __name__ == "__main__":
     pytest.main()
