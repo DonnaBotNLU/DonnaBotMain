@@ -1,5 +1,6 @@
 import pytest
-from Modules.linuxtoolbox import display_menu
+from .linuxtoolbox import display_menu
+
 
 def test_display_menu(capsys):
     display_menu()
