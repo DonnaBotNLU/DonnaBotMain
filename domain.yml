@@ -2,6 +2,8 @@ version: "3.1"
 
 entities:
   - name
+  - url
+  - something
 slots:
   concerts:
     type: list
@@ -48,6 +50,8 @@ intents:
   - provide_channel_id
   - user_message
   - get_disposable_email
+  - action_set_website
+  - add_table
   
 actions:
   - action_take_note
@@ -65,6 +69,7 @@ actions:
   - provide_channel_id
   - user_message
   - action_get_disposable_email
+  - action_set_website
 
 responses:
 

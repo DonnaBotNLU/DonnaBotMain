@@ -12,6 +12,11 @@ stories:
   - intent: pre_train1
   - action: pre_train1
 
+- story: set website checker
+  steps: 
+  - intent: action_set_website
+  - action: action_set_website
+
 - story: read the user their notes
   steps: 
   - intent: action_read_notes

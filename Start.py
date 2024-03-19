@@ -31,6 +31,17 @@ def start_rasa_shell():
     # Start the Rasa shell inside the specified directory
     subprocess.Popen(['rasa', 'shell'], cwd=directory)
 
+def start_web_check():
+    # Set the directory path to the Rasa folder
+    directory = os.path.expanduser("~/Rasa")
+
+    # Set the path to the web_check.py file
+    web_check_path = os.path.join(directory, "Modules", "Web_check.py")
+
+    # Run the web_check.py file using subprocess
+    subprocess.Popen(["python3", web_check_path])
+
+
 if __name__ == "__main__":
     print("What do you want to do?")
     print("1. Train Rasa")
@@ -42,7 +53,8 @@ if __name__ == "__main__":
         subprocess.Popen(['rasa', 'train'])
     elif choice == "2":
         start_rasa_actions()
-        time.sleep(5)  # Wait for actions server to start (adjust delay as needed)
+        time.sleep(10)  # Wait for actions server to start (adjust delay as needed)
         start_rasa_shell()
+        start_web_check()
     else:
         print("Invalid choice. Please enter 1 or 2.")

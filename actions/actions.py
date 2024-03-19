@@ -12,6 +12,40 @@
 # from rasa_sdk import Action, Tracker
 # from rasa_sdk.executor import CollectingDispatcher
 #
+
+from typing import Any, Text, Dict, List
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+import os
+
+class ActionSetWebsite(Action):
+    def name(self) -> Text:
+        return "action_set_website"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Get the URL from the user
+        url = tracker.latest_message.get("text")
+
+        home_dir = os.path.expanduser("~")
+
+        # Construct the full path to the script file
+        script_file_path = os.path.join(home_dir, "Modules", "web_check.py")
+
+        # Open and manipulate the script file
+        with open(script_file_path, "r+") as script_file:
+            content = script_file.read()
+            script_file.seek(0)
+            script_file.truncate(0)
+            new_content = content.replace('url = "https://example.com"', f'url = "{url}"')
+            script_file.write(new_content)
+
+        dispatcher.utter_message(f"Website URL set to {url}")
+
+        return []
+
+
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher

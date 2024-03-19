@@ -1,3 +1,7 @@
 numpy
 pandas
 matplotlib
+bs4
+discord.py
+rasa
+nltk

@@ -12,7 +12,12 @@ nlu:
   examples: |
     - make a table named [United States Of America]{"entity": "name", "role": "name"} containing [value]{"entity": "value"}
 
-
+- intent: action_set_website
+  examples: |
+    - check a website for me
+    - keep an eye on a website
+    - set website
+    - set website to [url]
 - intent: action_send_to_discord
   examples: |
     - send to discord
