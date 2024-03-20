@@ -40,10 +40,10 @@ class ActionSetWebsite(Action):
         # Get the URL from the user
         url = tracker.latest_message.get("text")
 
-        home_dir = os.path.expanduser("~")
+        home_dir = os.path.expanduser("~/Rasa")
 
         # Construct the full path to the script file
-        script_file_path = os.path.join(home_dir, "Modules", "web_check.py")
+        script_file_path = os.path.join(home_dir, "Modules", "Web_check.py")
 
         # Open and manipulate the script file
         with open(script_file_path, "r+") as script_file:
@@ -61,6 +61,35 @@ class ActionSetWebsite(Action):
         # Return an empty list to end the action
         return []
 
+from typing import Any, Text, Dict, List
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+
+class GitHelpAction(Action):
+    def name(self) -> Text:
+        return "git_help"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        git_commands = [
+            "git init",
+            "git clone <repository>",
+            "git add <file>",
+            "git commit -m '<message>'",
+            "git push",
+            "git pull",
+            "git branch",
+            "git checkout <branch>"
+            # Add more git commands as needed
+        ]
+
+        response = "Here are some useful git commands:\n"
+        response += "\n".join(git_commands)
+        
+        dispatcher.utter_message(response)
+
+        return []
 
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker

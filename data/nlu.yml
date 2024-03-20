@@ -198,12 +198,8 @@ nlu:
     - tempmail
 - intent: git_help
   examples: |
-    - git help
-    - git_help
-    - what are my git commands
-    - help me upload you
-    - github
-    - How do i use git?   
+    - testfield1
+    - testfield2
 - intent: pre_train1
   examples: |
     - pretrain 

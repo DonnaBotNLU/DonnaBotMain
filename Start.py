@@ -27,9 +27,10 @@ def start_rasa_actions():  #Will need to be changed for the windows and mac vers
 def start_rasa_shell():
     # Define the directory you want to run the command in
     directory = os.path.expanduser("~/Rasa")
-
+    command = f'cd {directory} && rasa shell'
+    
     # Start the Rasa shell inside the specified directory
-    subprocess.Popen(['rasa', 'shell'], cwd=directory)
+    os.system(f'gnome-terminal -- bash -c "{command}; exec bash"')
 
 def start_web_check():
     # Set the directory path to the Rasa folder

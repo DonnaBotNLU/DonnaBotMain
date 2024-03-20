@@ -10,14 +10,14 @@ from nltk.tag import pos_tag
 from nltk.chunk import ne_chunk
 
 # Download NLTK resources (uncomment the following line if not already downloaded)
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('maxent_ne_chunker')
-nltk.download('words')
+#nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('averaged_perceptron_tagger')
+#nltk.download('maxent_ne_chunker')
+#nltk.download('words')
 
 # URL of the webpage to check
-url = "https://github.com/DonnaBotNLU/DonnaBotMain"
+url = "check website"
 
 # File to save the summary
 summary_file = "summary.txt"
