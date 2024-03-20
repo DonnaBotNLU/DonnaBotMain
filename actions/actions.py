@@ -17,10 +17,22 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import os
+import subprocess
+
 
 class ActionSetWebsite(Action):
     def name(self) -> Text:
         return "action_set_website"
+
+    def start_web_check(self):
+        # Set the directory path to the Rasa folder
+        directory = os.path.expanduser("~/Rasa")
+
+        # Set the path to the web_check.py file
+        web_check_path = os.path.join(directory, "Modules", "Web_check.py")
+
+        # Run the web_check.py file using subprocess
+        subprocess.Popen(["python3", web_check_path])
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
@@ -38,11 +50,15 @@ class ActionSetWebsite(Action):
             content = script_file.read()
             script_file.seek(0)
             script_file.truncate(0)
-            new_content = content.replace('url = "https://example.com"', f'url = "{url}"')
+            new_content = content.replace('url = "https://github.com/DonnaBotNLU/DonnaBotMain"', f'url = "{url}"')
             script_file.write(new_content)
-
+            
         dispatcher.utter_message(f"Website URL set to {url}")
-
+        
+        # Call the method to start the web check
+        self.start_web_check()
+        
+        # Return an empty list to end the action
         return []
 
 

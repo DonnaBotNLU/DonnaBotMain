@@ -17,7 +17,7 @@ nltk.download('maxent_ne_chunker')
 nltk.download('words')
 
 # URL of the webpage to check
-url = "https://example.com"
+url = "https://github.com/DonnaBotNLU/DonnaBotMain"
 
 # File to save the summary
 summary_file = "summary.txt"
