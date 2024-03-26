@@ -52,8 +52,28 @@ intents:
   - get_disposable_email
   - action_set_website
   - add_table
+  - inform_location
+  - request_restaurant
+  - inform_cuisine_preference
+  - inform_food_dislike  
+  - request_recipe
+  - inform_ingredient_available
+  - inform_ingredient_missing
+  - request_ingredient_substitution
+  - inform_dietary_preference
+  - request_restaurant_recommendation
   
 actions:
+  - utter_ack_location
+  - action_suggest_restaurant
+  - utter_ack_cuisine
+  - utter_ack_food_dislike
+  - action_provide_recipe 
+  - utter_ack_ingredients
+  - utter_ack_missing_ingredient
+  - action_suggest_substitution
+  - utter_ack_diet
+  - action_recommend_restaurant
   - action_take_note
   - take_note
   - action_read_notes

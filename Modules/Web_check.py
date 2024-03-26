@@ -17,7 +17,7 @@ from nltk.chunk import ne_chunk
 #nltk.download('words')
 
 # URL of the webpage to check
-url = "check website"
+url = "https://github.com/DonnaBotNLU/DonnaBotMain"
 
 # File to save the summary
 summary_file = "summary.txt"

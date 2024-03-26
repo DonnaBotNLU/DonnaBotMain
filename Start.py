@@ -3,6 +3,12 @@ import time
 import os
 import sys
 
+def install_requirements():
+    """Install dependencies from requirements.txt"""
+    
+    process = subprocess.run([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+    
+
 def print_rainbow(message):
     colors = [
         '\033[91m',  # Red
@@ -18,7 +24,7 @@ def print_rainbow(message):
         time.sleep(0.2)  # Adjust speed as needed
 
 def start_rasa_actions():  #Will need to be changed for the windows and mac versions, this is linux feature only
-    directory = os.path.expanduser("~/Rasa")
+    directory = os.path.expanduser("~/DonnaBotMain")
     command = f'cd {directory} && rasa run actions'
 
     # Open a new terminal window and execute the command
@@ -26,7 +32,7 @@ def start_rasa_actions():  #Will need to be changed for the windows and mac vers
 
 def start_rasa_shell():
     # Define the directory you want to run the command in
-    directory = os.path.expanduser("~/Rasa")
+    directory = os.path.expanduser("~/DonnaBotMain")
     command = f'cd {directory} && rasa shell'
     
     # Start the Rasa shell inside the specified directory
@@ -34,7 +40,7 @@ def start_rasa_shell():
 
 def start_web_check():
     # Set the directory path to the Rasa folder
-    directory = os.path.expanduser("~/Rasa")
+    directory = os.path.expanduser("~/DonnaBotMain")
 
     # Set the path to the web_check.py file
     web_check_path = os.path.join(directory, "Modules", "Web_check.py")
@@ -44,6 +50,7 @@ def start_web_check():
 
 
 if __name__ == "__main__":
+    install_requirements()
     print("What do you want to do?")
     print("1. Train Rasa")
     print("2. Run Rasa shell and actions server")

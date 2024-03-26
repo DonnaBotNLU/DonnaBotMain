@@ -159,7 +159,55 @@ stories:
   - intent: get_disposable_email
   - action: utter_tempmail
   - action: action_get_disposable_email
-  
 
+- story: provide location
+  steps:
+  - intent: inform_location
+  - action: utter_ack_location
+
+- story: ask for restaurant 
+  steps:
+  - intent: request_restaurant
+  - action: action_suggest_restaurant
+
+- story: provide cuisine preference
+  steps:
+  - intent: inform_cuisine_preference
+  - action: utter_ack_cuisine
+
+- story: tell food dislike
+  steps:
+  - intent: inform_food_dislike
+  - action: utter_ack_food_dislike
+
+- story: ask for recipe
+  steps:
+  - intent: request_recipe
+  - action: action_provide_recipe
+
+- story: tell ingredients available
+  steps:
+  - intent: inform_ingredient_available
+  - action: utter_ack_ingredients  
+
+- story: tell ingredient missing
+  steps:
+  - intent: inform_ingredient_missing
+  - action: utter_ack_missing_ingredient
+
+- story: ask for substitution
+  steps:
+  - intent: request_ingredient_substitution
+  - action: action_suggest_substitution  
+
+- story: inform dietary preference
+  steps: 
+  - intent: inform_dietary_preference
+  - action: utter_ack_diet  
+
+- story: ask for restaurant recommendation
+  steps:
+  - intent: request_restaurant_recommendation
+  - action: action_recommend_restaurant
 
 

@@ -54,9 +54,8 @@ nlu:
   
 - intent: action_read_notes
   examples: |
-    - what was my note?
-    - what did i forget?
-    - do you remember my note?
+    - what was my note
+    - do you remember my notes
     - what did i have you remember? 
     - remember [something].
   
@@ -184,11 +183,12 @@ nlu:
     - this is a new question?
     - i dont know that?
     - I do not know what you mean?
+    - what is [something]
     - What do you know about [something]?
     
 - intent: ActionUpdateNLUData
   examples: |
-    - 0
+    - 9
 
 - intent: get_disposable_email
   examples: |
@@ -206,10 +206,7 @@ nlu:
     - generate the domain file.
     - fix your code for me
     - update 
- 
-- intent: unknown_question
-  examples: |
-    - do you know how much a car weighs?
+
     
 - intent: action_execute_command
   examples: |
@@ -220,3 +217,93 @@ nlu:
     - dev menu 000
   
 
+# nlu.yml
+
+-  intent: inform_location
+   examples: |
+     - I live in Paris
+     - My location is London
+     - I'm from Berlin
+     - I reside in New York City
+     - My current city is Tokyo  
+     - I moved to Sydney last year
+
+-  intent: equest_restaurant
+   examples: |  
+     - Can you suggest a good Italian restaurant nearby?
+     - I'm looking for a nice steakhouse in the area
+     - Where is a tasty Mexican restaurant around here?
+     - Find me a great sushi place not too far from here
+     - I want to try an authentic Indian restaurant tonight
+
+-  intent: inform_cuisine_preference
+   examples: |
+     - I love Italian food
+     - Chinese cuisine is my favorite
+     - I really enjoy eating Mexican
+     - Japanese and Thai foods are what I like
+     - I prefer spicy South Indian dishes
+     - Vietnamese pho is one of my go-to meals  
+
+-  intent: inform_food_dislike
+   examples: |
+     - I don't like seafood
+     - Not a fan of Indian curries
+     - I try to avoid fried foods
+     - Can't stand the taste of olives
+     - Dislike eggplant and zucchini
+     - Really don't enjoy sweets and desserts
+
+-  intent: request_recipe
+   examples: |  
+     - What's a good recipe for chicken tacos?
+     - Looking for a vegetarian lasagna recipe
+     - I want to cook a nice risotto tonight
+     - Give me a recipe for making pad thai
+     - Can you recommend a recipe for butter chicken?
+     - Find an easy recipe for chocolate chip cookies
+
+-  intent: inform_ingredient_available
+   examples: |
+     - I have carrots, celery and chicken
+     - There's pasta, tomatoes and ground beef in the fridge
+     - I have eggs, milk, flour and butter on hand
+     - We've got rice, broccoli and chicken breasts
+     - I have potatoes, onions and sausage available
+     - The pantry has beans, corn and cheddar cheese
+
+-  intent: inform_ingredient_missing
+   examples: |  
+     - I don't have any garlic at home
+     - We are out of olive oil
+     - Don't have any onions for this recipe
+     - Missing tomatoes for the sauce
+     - Need to get more milk for baking
+     - Don't have enough chicken for the stir fry
+
+-  intent: request_ingredient_substitution
+   examples: |
+     - Can I use thyme instead of oregano in this recipe?
+     - What can I substitute for eggplant?  
+     - Is there a replacement for all-purpose flour?
+     - What can be used in place of chicken stock?
+     - What do you recommend instead of butter in cookies?
+     - Is there a non-dairy option for heavy cream?
+
+-  intent: inform_dietary_preference
+   examples: |
+     - I eat a vegan diet
+     - I'm on a gluten-free diet
+     - Trying to go with low-carb meal options
+     - I avoid dairy due to an allergy
+     - I eat mostly plant-based and organic  
+     - My diet is pescatarian
+
+-  intent: request_restaurant_recommendation
+   examples: |
+     - Where is a nice restaurant to go for my anniversary?
+     - I need a restaurant suggestion for my girlfriend's birthday  
+     - Recommend an elegant restaurant for a special occasion
+     - Find a good family-friendly restaurant near the park
+     - Suggest a place with great views to take someone on a date
+     - I want a fun restaurant with a lively atmosphere for a group dinner

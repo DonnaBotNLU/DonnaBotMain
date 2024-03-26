@@ -12,6 +12,71 @@
 # from rasa_sdk import Action, Tracker
 # from rasa_sdk.executor import CollectingDispatcher
 #
+from typing import Any, Text, Dict, List
+
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+
+class ActionSuggestRestaurant(Action):
+
+    def name(self) -> Text:
+        return "action_suggest_restaurant"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        # Logic to suggest restaurant based on location and cuisine
+
+        dispatcher.utter_message(text="Here is a restaurant suggestion...")
+
+        return []
+
+class ActionProvideRecipe(Action):
+
+    def name(self) -> Text:
+        return "action_provide_recipe"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Logic to provide recipe based on request
+
+        dispatcher.utter_message(text="Here is a recipe for that dish...")  
+
+        return []
+        
+class ActionSuggestSubstitution(Action):
+
+    def name(self) -> Text:
+        return "action_suggest_substitution"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Logic to suggest ingredient substitution
+        
+        dispatcher.utter_message(text="Here is a substitute you could use...")
+
+        return []
+
+class ActionRecommendRestaurant(Action):
+
+    def name(self) -> Text:
+        return "action_recommend_restaurant"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Logic to recommend restaurant based on occasion
+
+        dispatcher.utter_message(text="Here is my restaurant recommendation...")
+
+        return []
+        
 
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
@@ -26,7 +91,7 @@ class ActionSetWebsite(Action):
 
     def start_web_check(self):
         # Set the directory path to the Rasa folder
-        directory = os.path.expanduser("~/Rasa")
+        directory = os.path.expanduser("DonnaBotMain")
 
         # Set the path to the web_check.py file
         web_check_path = os.path.join(directory, "Modules", "Web_check.py")
@@ -40,7 +105,7 @@ class ActionSetWebsite(Action):
         # Get the URL from the user
         url = tracker.latest_message.get("text")
 
-        home_dir = os.path.expanduser("~/Rasa")
+        home_dir = os.path.expanduser("DonnaBotMain")
 
         # Construct the full path to the script file
         script_file_path = os.path.join(home_dir, "Modules", "Web_check.py")
@@ -197,12 +262,42 @@ def start_discord_bot(channel_id):
     bot.run(api_key)
 
 
+import os
+from rasa_sdk import Action
+import requests
+
 class ActionUpdateNLUData(Action):
+
     def name(self):
         return "ActionUpdateNLUData"
+
+    def run(self, dispatcher, tracker, domain):
+
+        # Get the user's question 
+        question = tracker.latest_message.get("text")
+
+        # Read API key from file
+        api_key_file = os.path.join(os.path.dirname(__file__), "keys.txt") 
+        with open(api_key_file, "r") as f:
+            api_key = f.read().strip()
         
-        # If OpenAI couldn't generate a response, revert the last user utterance
-        return []
+        # Make request to Deepseek API
+        response = requests.post("https://api.deepseek.com/api/v1/search", json={
+            "query": question,
+            "num_results": 1
+        }, headers={
+            "Authorization": f"Token {api_key}"
+        })
+        
+        # Process response and send back answer
+        if response.status_code == 200:
+            answer = response.json()["results"][0]["text"]
+            dispatcher.utter_message(text=answer)
+
+        else:
+            dispatcher.utter_message(text="Sorry, I don't have an answer for that right now.")
+            return []
+
 
 
 from rasa_sdk import Action
