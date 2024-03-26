@@ -278,7 +278,7 @@ class ActionUpdateNLUData(Action):
       question = tracker.latest_message.get("text")
 
       # Read API key from file
-      api_key_file = "actions/keys.txt"
+      api_key_file = "../keys.txt"
 
       try:
         with open(api_key_file, "r") as f:
@@ -311,7 +311,8 @@ class ActionUpdateNLUData(Action):
       headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer <token>'
+        'Authorization': 'Bearer ' + api_key
+
       }
 
       response = requests.request("POST", url, headers=headers, data=payload)
@@ -337,6 +338,8 @@ class ActionUpdateNLUData(Action):
       print(f"Error: {e}")
 
     return []
+  
+
 from typing import Any, Text, Dict, List
 
 import json
@@ -358,11 +361,17 @@ class ActionReprogram(Action):
       user_message = tracker.latest_message.get("text")
       bot_message = tracker.latest_bot_message.get("text")
       
+      with open('stores.csv', 'r') as f:
+        content = f.read()
+        if len(content) > 1400:
+          print('full')
+      
       with open('stores.csv', 'a') as f:
           f.write(f"User: {user_message}\n") 
           f.write(f"Bot: {bot_message}\n")
           
       return []
+
 
 
 
