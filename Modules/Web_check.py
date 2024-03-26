@@ -1,3 +1,16 @@
+"""
+This module checks a given URL for new content periodically, summarizes any new content found, and saves the summary to a file.
+
+It contains the following functions:
+
+- get_webpage_content: Gets the HTML content of the given URL.
+- extract_new_content: Compares new and old HTML content to check for changes.
+- summarize_content: Summarizes any new content found by extracting key words and entities.  
+- save_summary: Appends the generated summary to a file.
+- run_script: Runs the main logic to check the URL and generate a summary.
+
+The main execution logic runs run_script continuously to keep checking for changes.
+"""
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
@@ -43,7 +56,7 @@ def extract_new_content(old_content, new_content):
     new_text = extract_text_from_html(new_content)
 
     # Compare the extracted text to determine if new content is different
-    return old_text != new_text
+    
 
 
     # Compare the lengths of the extracted text

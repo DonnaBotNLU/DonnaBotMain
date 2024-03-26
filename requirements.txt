@@ -6,3 +6,4 @@ discord.py
 rasa
 nltk
 toolbelt
+openai

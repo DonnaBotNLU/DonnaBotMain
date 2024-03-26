@@ -265,38 +265,105 @@ def start_discord_bot(channel_id):
 import os
 from rasa_sdk import Action
 import requests
+import json
 
 class ActionUpdateNLUData(Action):
 
-    def name(self):
-        return "ActionUpdateNLUData"
+  def name(self):
+    return "ActionUpdateNLUData"
 
-    def run(self, dispatcher, tracker, domain):
+  def run(self, dispatcher, tracker, domain):
+    try:
+      # Get the user's question
+      question = tracker.latest_message.get("text")
 
-        # Get the user's question 
-        question = tracker.latest_message.get("text")
+      # Read API key from file
+      api_key_file = "actions/keys.txt"
 
-        # Read API key from file
-        api_key_file = os.path.join(os.path.dirname(__file__), "keys.txt") 
+      try:
         with open(api_key_file, "r") as f:
-            api_key = f.read().strip()
-        
-        # Make request to Deepseek API
-        response = requests.post("https://api.deepseek.com/api/v1/search", json={
-            "query": question,
-            "num_results": 1
-        }, headers={
-            "Authorization": f"Token {api_key}"
-        })
-        
-        # Process response and send back answer
-        if response.status_code == 200:
-            answer = response.json()["results"][0]["text"]
-            dispatcher.utter_message(text=answer)
+          api_key = f.read().strip()
+      except FileNotFoundError:
+        return[]
 
+      url = "https://api.deepseek.com/v1/chat/completions"
+      user_message1 = tracker.latest_message.get("text")
+      payload = json.dumps({
+        "messages": [
+          {
+            "content": "you are a chatbot for simple answers",
+            "role": "system"
+          },
+          {
+            "content": user_message1,
+            "role": "user"
+          }
+        ],
+        "model": "deepseek-chat",
+        "frequency_penalty": 0.5,
+        "max_tokens": 1500,
+        "presence_penalty": 0.5,
+        "stop": None,
+        "stream": False,
+        "temperature": 1,
+        "top_p": 1
+      })
+      headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer <token>'
+      }
+
+      response = requests.request("POST", url, headers=headers, data=payload)
+
+      print(response.text)
+
+      # Process response and send back answer
+      if response.status_code == 200:
+        data = response.json()
+        if "choices" in data and data["choices"]:
+                    answer = data["choices"][0].get("message", {}).get("content", "No answer found.")
+                    dispatcher.utter_message(text=answer)
+                    user_message = tracker.latest_message.get("text")
+                    with open('stores.csv', 'a') as f:
+                        f.write(f"User: {user_message}\n") 
+                        f.write(f"Bot: {answer}\n")
         else:
-            dispatcher.utter_message(text="Sorry, I don't have an answer for that right now.")
-            return []
+          dispatcher.utter_message(text="No results found.")
+      else:
+        dispatcher.utter_message(text="Sorry, I don't have an answer for that right now.")
+    except Exception as e:
+      dispatcher.utter_message(text="An error occurred while processing your request.")
+      print(f"Error: {e}")
+
+    return []
+from typing import Any, Text, Dict, List
+
+import json
+import requests
+
+from rasa_sdk import Action, Tracker
+from rasa_sdk.executor import CollectingDispatcher
+
+
+class ActionReprogram(Action):
+
+  def name(self) -> Text:
+      return "action_reprogram"
+
+  def run(self, dispatcher: CollectingDispatcher,
+          tracker: Tracker,
+          domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      user_message = tracker.latest_message.get("text")
+      bot_message = tracker.latest_bot_message.get("text")
+      
+      with open('stores.csv', 'a') as f:
+          f.write(f"User: {user_message}\n") 
+          f.write(f"Bot: {bot_message}\n")
+          
+      return []
+
 
 
 
