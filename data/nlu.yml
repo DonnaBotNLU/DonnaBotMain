@@ -176,6 +176,10 @@ nlu:
     - you're a bot aren't you?
     - are you even a real person?
  
+- intent: ask_question
+  examples: |
+    - start 10
+
 - intent: unknown_question
   examples: |
     - What is the meaning of life?

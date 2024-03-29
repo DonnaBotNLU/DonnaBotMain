@@ -57,6 +57,7 @@ intents:
   - inform_cuisine_preference
   - inform_food_dislike  
   - request_recipe
+  - ask_question_intent
   - inform_ingredient_available
   - inform_ingredient_missing
   - request_ingredient_substitution
@@ -90,6 +91,8 @@ actions:
   - user_message
   - action_get_disposable_email
   - action_set_website
+  - action_ask_question
+  - action_answer_question
 
 responses:
 

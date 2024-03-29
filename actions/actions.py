@@ -278,7 +278,7 @@ class ActionUpdateNLUData(Action):
       question = tracker.latest_message.get("text")
 
       # Read API key from file
-      api_key_file = "../keys.txt"
+      api_key_file = "/actions/keys.txt"
 
       try:
         with open(api_key_file, "r") as f:
@@ -300,9 +300,9 @@ class ActionUpdateNLUData(Action):
           }
         ],
         "model": "deepseek-chat",
-        "frequency_penalty": 0.5,
+        "frequency_penalty": 0,
         "max_tokens": 1500,
-        "presence_penalty": 0.5,
+        "presence_penalty": 0,
         "stop": None,
         "stream": False,
         "temperature": 1,
@@ -318,6 +318,8 @@ class ActionUpdateNLUData(Action):
       response = requests.request("POST", url, headers=headers, data=payload)
 
       print(response.text)
+      print(response)
+      print("actionupdateNLUdata")
 
       # Process response and send back answer
       if response.status_code == 200:
@@ -388,7 +390,45 @@ class PreTrain1Action(Action):
 
         return []
 
-        
+
+from rasa_sdk import Action
+from rasa_sdk.events import SlotSet
+
+class AskQuestionAction(Action):
+    def name(self):
+        return "action_ask_question"
+
+    def run(self, dispatcher, tracker, domain):
+        # Ask the question
+        question_text = "What is the capital of France?"
+        dispatcher.utter_message(question_text)
+
+        # Save the question in a slot so we can reference it later
+        return [SlotSet("current_question", question_text)]
+
+class AnswerQuestionAction(Action):
+    def name(self):
+        return "action_answer_question"
+
+    def run(self, dispatcher, tracker, domain):
+        # Get the current question from the slot
+        current_question = tracker.get_slot("current_question")
+
+        # Check if the question is the one we're expecting
+        if current_question == "What is the capital of France?":
+            # Answer the question
+            answer_text = "The capital of France is Paris."
+            dispatcher.utter_message(answer_text)
+
+            # Clear the current question slot
+            return [SlotSet("current_question", None)]
+        else:
+            # If the question is not recognized, let the user know
+            dispatcher.utter_message("Sorry, I can't answer that question.")
+
+            # Clear the current question slot
+            return [SlotSet("current_question", None)]
+
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
