@@ -1,9 +1,14 @@
 numpy
 pandas
 matplotlib
-bs4
-discord.py
+beautifulsoup4
 rasa
+discord.py
 nltk
-toolbelt
 openai
+setuptools
+aiohttp
+getch
+sphinx
+fbmessenger
+pykwalify

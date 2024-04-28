@@ -10,3 +10,15 @@ generate images locally or in the cloud
 
 finish linuxtoolbox.py -adding aditional logic
 
+MUST USE PYTHON 3.8!!! rasa is broken with newer python versions, so just make sure to install python 3.8 and rasa will automatically use it 
+the start script (start.py) installs the requirements, trains the bot and/or launches the bot. Donnabot can only be started using this command: "python start.py" and not "python3" or "python3.11+"
+its possible to start without a virtual enviroment but created a virtual enviroment for python3.8 is highly recommended if you encounter any issues!
+
+if you run into issues saying "rasa not found" try: 
+pip uninstall rasa
+pip install rasa[full]
+
+you will need to manually install the following requirments:
+getch
+requests
+cython
